@@ -1,0 +1,45 @@
+<ion-content>
+
+<h1>Bienvenido</h1>
+<h2>Inicia sesión para continuar</h2>
+
+<main>
+
+<div class="banner">
+<h2>Focus Flow</h2>
+<p>Organiza hábitos y tareas diariamente</p>
+</div>
+
+<section class="formulario">
+
+<input
+type="email"
+placeholder="Correo"
+[(ngModel)]="email">
+
+<input
+type="password"
+placeholder="Contraseña"
+[(ngModel)]="password">
+
+<button (click)="login()">
+Ingresar
+</button>
+
+<div class="links">
+
+<button routerLink="/register">
+Crear cuenta
+</button>
+
+<button routerLink="/password">
+¿Olvidaste tu contraseña?
+</button>
+
+</div>
+
+</section>
+
+</main>
+
+</ion-content>

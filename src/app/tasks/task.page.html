@@ -1,0 +1,134 @@
+<ion-content>
+
+  <h1>Tareas</h1>
+  <h2>Crea y gestiona tus tareas</h2>
+
+  <main>
+
+    <!-- RESUMEN -->
+    <section id="resumen">
+
+      <div id="tareas">
+        ✓ {{ tareasCompletadas }} Completadas
+      </div>
+
+      <div id="pendientes">
+        {{ tareasPendientes }} Pendientes
+      </div>
+
+      <div id="completadas">
+        {{ tareasCompletadas }} Completadas
+      </div>
+
+    </section>
+
+    <!-- FILTROS -->
+    <section id="filtros">
+
+      <div id="todas">Todas</div>
+
+      <div id="pendientes">
+        Pendientes
+      </div>
+
+      <div id="completadas">
+        Completadas
+      </div>
+
+      <div id="vencidas">
+        Vencidas
+      </div>
+
+    </section>
+
+    <button (click)="mostrarFormulario = true">
+      ➕ Agregar tarea
+    </button>
+
+    <!-- FORMULARIO -->
+    <section
+      id="crear-tarea"
+      *ngIf="mostrarFormulario">
+
+      <input
+        type="text"
+        placeholder="Nombre de la tarea"
+        [(ngModel)]="nuevoNombre">
+
+      <input
+        type="text"
+        placeholder="Categoría"
+        [(ngModel)]="nuevaCategoria">
+
+      <input
+        type="text"
+        placeholder="Prioridad"
+        [(ngModel)]="nuevaPrioridad">
+
+      <button (click)="agregarTask()">
+        Agregar tarea
+      </button>
+
+      <button (click)="mostrarFormulario = false">
+        Cancelar
+      </button>
+
+    </section>
+
+    <!-- LISTA DE TAREAS -->
+    <section id="tareas">
+
+      <div
+        class="tarea"
+        *ngFor="let task of tareasFiltradas">
+
+        <input
+          type="checkbox"
+          [(ngModel)]="task.completada"
+          (change)="cambiarEstado(task)">
+
+        <div class="informacion-tarea">
+
+          <span class="nombre-tarea">
+            {{ task.name }}
+          </span>
+
+          <div class="detalles-tarea">
+
+            <span class="fecha">
+              📅 {{ task.date | date:'dd/MM/yyyy' }}
+            </span>
+
+            <span class="categoria">
+              🏷 {{ task.categoria }}
+            </span>
+
+          </div>
+
+        </div>
+
+        <span class="prioridad">
+          {{ task.prioridad }}
+        </span>
+
+        <button
+          class="btn-editar"
+          (click)="editarTask(task)">
+          ✏️
+        </button>
+
+        <button
+          class="btn-eliminar"
+          (click)="eliminarTask(task.id)">
+          🗑
+        </button>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <app-bottom-navigation></app-bottom-navigation>
+
+</ion-content>
